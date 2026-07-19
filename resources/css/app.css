@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "tailwindcss";
+
+@theme {
+    --font-sans: 'Inter', sans-serif;
+}
+
+/* Sidebar Collapsed State */
+#app-sidebar.is-collapsed {
+    width: 80px !important;
+}
+#app-sidebar.is-collapsed .sidebar-label {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+#app-sidebar.is-collapsed .accordion-chevron {
+    display: none;
+}
+
+/* Mobile Drawer */
+#app-sidebar.is-open {
+    transform: translateX(0) !important;
+}
+
+/* Tooltip */
+.sidebar-tooltip {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    background-color: #1E293B;
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    display: none;
+}
+#app-sidebar.is-collapsed .group:hover .sidebar-tooltip {
+    display: block;
+    opacity: 1;
+}
+
+/* Custom Scrollbar */
+nav::-webkit-scrollbar { width: 4px; }
+nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
