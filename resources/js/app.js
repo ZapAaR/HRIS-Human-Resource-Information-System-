@@ -50,3 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Import global modules here
+// Divisi module is loaded per-page via @push('scripts')

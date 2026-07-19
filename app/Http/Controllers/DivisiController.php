@@ -12,9 +12,9 @@ class DivisiController extends Controller
 {
     public function __construct(protected DivisiService $service) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $divisis = $this->service->getAll();
+        $divisis = $this->service->getAll($request);
 
         return view('divisi.index', compact('divisis'));
     }

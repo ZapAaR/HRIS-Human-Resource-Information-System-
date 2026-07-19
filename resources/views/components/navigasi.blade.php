@@ -81,7 +81,7 @@
                                 class="sidebar-label">Karyawan</span></a></li>
                 @endcan
                 @can('divisi.view')
-                    <li><a href="#"
+                    <li><a href="{{ route('divisi.index') }}"
                             class="block px-3 py-2 text-sm rounded-lg transition {{ request()->routeIs('divisi.*') ? 'text-[#2563EB] font-medium bg-[#2563EB]/10' : 'text-[#CBD5E1]/70 hover:text-white hover:bg-white/5' }}"><span
                                 class="sidebar-label">Divisi</span></a></li>
                 @endcan
