@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\PosisiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('divisi', DivisiController::class);
+    Route::resource('posisi', PosisiController::class);
 });
 
 require __DIR__.'/auth.php';
