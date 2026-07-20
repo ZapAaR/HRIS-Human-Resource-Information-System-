@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Karyawan extends Model
 {
+    use HasFactory;
+
     protected $table = 'karyawans';
 
     protected $fillable = [
@@ -24,6 +27,12 @@ class Karyawan extends Model
         'gaji_pokok',
         'foto',
         'status',
+    ];
+
+     protected $casts = [
+        'tanggal_lahir' => 'date',
+        'tanggal_masuk' => 'date',
+        'gaji_pokok' => 'decimal:2',
     ];
 
     public function posisi()
