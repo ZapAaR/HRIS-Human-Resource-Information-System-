@@ -38,7 +38,7 @@
                 class="accordion-content mt-1 space-y-1 pl-10 overflow-hidden transition-all duration-300 {{ request()->routeIs(['users.*', 'roles.*', 'permissions.*']) ? 'max-h-96' : 'max-h-0' }}">
 
                 @can('user.view')
-                    <li><a href="#"
+                    <li><a href="{{ route('user.index') }}"
                             class="block px-3 py-2 text-sm rounded-lg transition {{ request()->routeIs('users.*') ? 'text-[#2563EB] font-medium bg-[#2563EB]/10' : 'text-[#CBD5E1]/70 hover:text-white hover:bg-white/5' }}"><span
                                 class="sidebar-label">Users</span></a></li>
                     {{-- <li><a href="#"
