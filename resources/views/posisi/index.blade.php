@@ -7,26 +7,26 @@
     {{-- Page Header --}}
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-            <nav class="flex items-center gap-2 text-sm text-slate-500 mb-2">
+            <nav class="flex items-center gap-2 text-sm text-slate-500 mb-2 flex-wrap">
                 <a href="{{ route('dashboard') }}" class="hover:text-[#2563EB] transition">Dashboard</a>
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
                 <span>Organization</span>
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
                 <span class="text-[#1E293B] font-medium">Posisi</span>
             </nav>
             <h1 class="text-2xl lg:text-3xl font-bold text-[#1E293B]">Posisi</h1>
-            <p class="text-slate-500 mt-1">Kelola data posisi/jabatan dalam perusahaan</p>
+            <p class="text-slate-500 mt-1 text-sm lg:text-base">Kelola data posisi/jabatan dalam perusahaan</p>
         </div>
     </div>
 
     {{-- Success Alert --}}
     @if(session('success'))
-        <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl" role="alert">
-            <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <div class="flex items-start gap-3 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl" role="alert">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span class="text-sm font-medium">{{ session('success') }}</span>
@@ -37,49 +37,127 @@
     <div class="bg-white rounded-xl border border-[#E2E8F0] shadow-sm overflow-hidden">
 
         {{-- Top Actions --}}
-        <div class="p-4 lg:p-5 border-b border-[#E2E8F0] flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-            <form action="{{ route('posisi.index') }}" method="GET" class="relative flex-1 max-w-md">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                </span>
-                <input type="text"
-                       name="search"
-                       value="{{ request('search') }}"
-                       placeholder="Cari posisi atau divisi..."
-                       class="w-full pl-10 pr-4 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-sm text-[#1E293B] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 focus:border-[#2563EB] transition">
-            </form>
+        <div class="p-4 lg:p-5 border-b border-[#E2E8F0] flex flex-col gap-3">
+            <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between w-full">
+                <form action="{{ route('posisi.index') }}" method="GET" class="relative w-full sm:max-w-md">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                    </span>
+                    <input type="text"
+                           name="search"
+                           value="{{ request('search') }}"
+                           placeholder="Cari posisi atau divisi..."
+                           class="w-full pl-10 pr-4 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl text-sm text-[#1E293B] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 focus:border-[#2563EB] transition">
+                </form>
 
-            <button type="button"
-                    id="btn-open-create"
-                    class="inline-flex items-center gap-2 px-4 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl shadow-sm shadow-blue-600/20 hover:shadow-md hover:shadow-blue-600/30 transition-all duration-200">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-                <span>Tambah Posisi</span>
-            </button>
+                <button type="button"
+                        id="btn-open-create"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl shadow-sm shadow-blue-600/20 hover:shadow-md hover:shadow-blue-600/30 transition-all duration-200">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span>Tambah Posisi</span>
+                </button>
+            </div>
         </div>
 
-        {{-- Table --}}
-        <div class="overflow-x-auto">
+        {{-- MOBILE VIEW: Card List (Visible only on mobile/tablet) --}}
+        <div class="lg:hidden divide-y divide-[#E2E8F0]">
+            @forelse($posisis as $index => $posisi)
+                <div class="p-4 space-y-3">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                            <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                                </svg>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="font-semibold text-[#1E293B] truncate">{{ $posisi->nama_posisi }}</p>
+                                <p class="text-xs text-slate-500 truncate">{{ $posisi->divisi->nama_divisi ?? 'Tanpa Divisi' }}</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-slate-400 whitespace-nowrap">No. {{ $posisis->firstItem() + $index }}</span>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg px-3 py-2.5">
+                        <p class="text-xs text-slate-500 mb-1">Deskripsi</p>
+                        <p class="text-sm text-slate-700 line-clamp-2">{{ $posisi->deskripsi ?? 'Tidak ada deskripsi' }}</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 pt-1">
+                        <button type="button"
+                                class="btn-show flex flex-col items-center justify-center gap-1 py-2.5 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg text-xs font-medium transition"
+                                data-id="{{ $posisi->id }}"
+                                data-divisi="{{ $posisi->divisi->nama_divisi ?? '-' }}"
+                                data-nama="{{ $posisi->nama_posisi }}"
+                                data-deskripsi="{{ $posisi->deskripsi ?? '-' }}"
+                                data-created="{{ $posisi->created_at->format('d M Y H:i') }}">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Detail</span>
+                        </button>
+
+                        <button type="button"
+                                class="btn-edit flex flex-col items-center justify-center gap-1 py-2.5 bg-amber-50 hover:bg-amber-100 text-amber-600 rounded-lg text-xs font-medium transition"
+                                data-id="{{ $posisi->id }}"
+                                data-divisi-id="{{ $posisi->divisi_id }}"
+                                data-nama="{{ $posisi->nama_posisi }}"
+                                data-deskripsi="{{ $posisi->deskripsi }}"
+                                data-action="{{ route('posisi.update', $posisi) }}">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                            <span>Edit</span>
+                        </button>
+
+                        <button type="button"
+                                class="btn-delete flex flex-col items-center justify-center gap-1 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg text-xs font-medium transition"
+                                data-action="{{ route('posisi.destroy', $posisi) }}"
+                                data-nama="{{ $posisi->nama_posisi }}">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                            </svg>
+                            <span>Hapus</span>
+                        </button>
+                    </div>
+                </div>
+            @empty
+                <div class="px-6 py-12 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-semibold text-[#1E293B] mb-1">Belum ada data posisi</h3>
+                    <p class="text-sm text-slate-500 mb-4">Mulai tambahkan posisi pertama Anda</p>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- DESKTOP VIEW: Table (Visible only on large screens) --}}
+        <div class="hidden lg:block overflow-x-auto">
             <table class="w-full text-sm">
                 <thead class="bg-[#F8FAFC] border-b border-[#E2E8F0]">
                     <tr>
-                        <th class="px-4 lg:px-6 py-3.5 text-left font-semibold text-[#1E293B] w-16">No</th>
-                        <th class="px-4 lg:px-6 py-3.5 text-left font-semibold text-[#1E293B]">Divisi</th>
-                        <th class="px-4 lg:px-6 py-3.5 text-left font-semibold text-[#1E293B]">Nama Posisi</th>
-                        <th class="px-4 lg:px-6 py-3.5 text-left font-semibold text-[#1E293B]">Deskripsi</th>
-                        <th class="px-4 lg:px-6 py-3.5 text-right font-semibold text-[#1E293B] w-56">Aksi</th>
+                        <th class="px-6 py-3.5 text-left font-semibold text-[#1E293B] w-16">No</th>
+                        <th class="px-6 py-3.5 text-left font-semibold text-[#1E293B]">Divisi</th>
+                        <th class="px-6 py-3.5 text-left font-semibold text-[#1E293B]">Nama Posisi</th>
+                        <th class="px-6 py-3.5 text-left font-semibold text-[#1E293B]">Deskripsi</th>
+                        <th class="px-6 py-3.5 text-right font-semibold text-[#1E293B] w-56">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-[#E2E8F0]">
                     @forelse($posisis as $index => $posisi)
                         <tr class="hover:bg-[#F8FAFC] transition-colors duration-150">
-                            <td class="px-4 lg:px-6 py-4 text-slate-600 font-medium">
+                            <td class="px-6 py-4 text-slate-600 font-medium">
                                 {{ $posisis->firstItem() + $index }}
                             </td>
-                            <td class="px-4 lg:px-6 py-4">
+                            <td class="px-6 py-4">
                                 <div class="flex items-center gap-3">
                                     <div class="w-9 h-9 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
                                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -89,15 +167,14 @@
                                     <span class="font-medium text-[#1E293B]">{{ $posisi->divisi->nama_divisi ?? '-' }}</span>
                                 </div>
                             </td>
-                            <td class="px-4 lg:px-6 py-4 font-medium text-[#1E293B]">
+                            <td class="px-6 py-4 font-medium text-[#1E293B]">
                                 {{ $posisi->nama_posisi }}
                             </td>
-                            <td class="px-4 lg:px-6 py-4 text-slate-600 max-w-xs">
+                            <td class="px-6 py-4 text-slate-600 max-w-xs">
                                 <span class="line-clamp-2">{{ $posisi->deskripsi ?? '-' }}</span>
                             </td>
-                            <td class="px-4 lg:px-6 py-4">
+                            <td class="px-6 py-4">
                                 <div class="flex items-center justify-end gap-2">
-                                    {{-- Show Button --}}
                                     <button type="button"
                                             class="btn-show inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 hover:text-blue-700 text-xs font-medium rounded-lg border border-blue-200 transition-all duration-200"
                                             data-id="{{ $posisi->id }}"
@@ -112,7 +189,6 @@
                                         <span>Show</span>
                                     </button>
 
-                                    {{-- Edit Button --}}
                                     <button type="button"
                                             class="btn-edit inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-600 hover:text-amber-700 text-xs font-medium rounded-lg border border-amber-200 transition-all duration-200"
                                             data-id="{{ $posisi->id }}"
@@ -126,7 +202,6 @@
                                         <span>Edit</span>
                                     </button>
 
-                                    {{-- Delete Button --}}
                                     <button type="button"
                                             class="btn-delete inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 text-xs font-medium rounded-lg border border-red-200 transition-all duration-200"
                                             data-action="{{ route('posisi.destroy', $posisi) }}"
@@ -150,14 +225,6 @@
                                     </div>
                                     <h3 class="text-base font-semibold text-[#1E293B] mb-1">Belum ada data posisi</h3>
                                     <p class="text-sm text-slate-500 mb-4">Mulai tambahkan posisi pertama Anda</p>
-                                    <button type="button"
-                                            id="btn-open-create-empty"
-                                            class="inline-flex items-center gap-2 px-4 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl transition">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                        </svg>
-                                        <span>Tambah Posisi</span>
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -168,24 +235,24 @@
 
         {{-- Pagination --}}
         @if($posisis->hasPages())
-            <div class="px-4 lg:px-6 py-4 border-t border-[#E2E8F0] flex flex-col sm:flex-row items-center justify-between gap-3">
-                <p class="text-sm text-slate-500">
+            <div class="px-4 lg:px-6 py-4 border-t border-[#E2E8F0] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <p class="text-xs sm:text-sm text-slate-500">
                     Menampilkan <span class="font-medium text-[#1E293B]">{{ $posisis->firstItem() }}</span>
                     sampai <span class="font-medium text-[#1E293B]">{{ $posisis->lastItem() }}</span>
                     dari <span class="font-medium text-[#1E293B]">{{ $posisis->total() }}</span> data
                 </p>
-                <nav class="flex items-center gap-1">
+                <nav class="flex items-center gap-1 flex-wrap justify-center">
                     @if($posisis->onFirstPage())
-                        <span class="px-3 py-1.5 text-sm text-slate-300 cursor-not-allowed">Previous</span>
+                        <span class="px-3 py-1.5 text-sm text-slate-300 cursor-not-allowed">Prev</span>
                     @else
-                        <a href="{{ $posisis->previousPageUrl() }}" class="px-3 py-1.5 text-sm text-slate-600 hover:bg-[#F8FAFC] rounded-lg transition">Previous</a>
+                        <a href="{{ $posisis->previousPageUrl() }}" class="px-3 py-1.5 text-sm text-slate-600 hover:bg-[#F8FAFC] rounded-lg transition">Prev</a>
                     @endif
 
                     @foreach($posisis->getUrlRange(1, $posisis->lastPage()) as $page => $url)
                         @if($page == $posisis->currentPage())
-                            <span class="w-9 h-9 flex items-center justify-center text-sm font-medium bg-[#2563EB] text-white rounded-lg">{{ $page }}</span>
+                            <span class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-sm font-medium bg-[#2563EB] text-white rounded-lg">{{ $page }}</span>
                         @else
-                            <a href="{{ $url }}" class="w-9 h-9 flex items-center justify-center text-sm text-slate-600 hover:bg-[#F8FAFC] rounded-lg transition">{{ $page }}</a>
+                            <a href="{{ $url }}" class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-sm text-slate-600 hover:bg-[#F8FAFC] rounded-lg transition">{{ $page }}</a>
                         @endif
                     @endforeach
 
@@ -220,7 +287,6 @@
             <form action="{{ route('posisi.store') }}" method="POST" class="px-6 py-5 space-y-4" novalidate>
                 @csrf
 
-                {{-- Divisi --}}
                 <div>
                     <label for="create-divisi" class="block text-sm font-medium text-[#1E293B] mb-1.5">
                         Divisi <span class="text-red-500">*</span>
@@ -251,7 +317,6 @@
                     @enderror
                 </div>
 
-                {{-- Nama Posisi --}}
                 <div>
                     <label for="create-nama" class="block text-sm font-medium text-[#1E293B] mb-1.5">
                         Nama Posisi <span class="text-red-500">*</span>
@@ -278,7 +343,6 @@
                     @enderror
                 </div>
 
-                {{-- Deskripsi --}}
                 <div>
                     <label for="create-deskripsi" class="block text-sm font-medium text-[#1E293B] mb-1.5">Deskripsi</label>
                     <textarea id="create-deskripsi"
@@ -288,11 +352,11 @@
                               class="w-full px-4 py-2.5 bg-white border border-[#E2E8F0] rounded-xl text-sm text-[#1E293B] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 focus:border-[#2563EB] transition resize-none">{{ old('deskripsi') }}</textarea>
                 </div>
 
-                <div class="flex items-center justify-end gap-2 pt-4 border-t border-[#E2E8F0]">
-                    <button type="button" class="btn-close-modal px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">
+                <div class="flex flex-col sm:flex-row items-center justify-end gap-2 pt-4 border-t border-[#E2E8F0]">
+                    <button type="button" class="btn-close-modal w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition mb-2 sm:mb-0">
                         Batal
                     </button>
-                    <button type="submit" class="px-4 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl shadow-sm shadow-blue-600/20 transition">
+                    <button type="submit" class="w-full sm:w-auto px-4 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl shadow-sm shadow-blue-600/20 transition">
                         Simpan
                     </button>
                 </div>
@@ -327,7 +391,6 @@
             </div>
 
             <div class="px-6 py-5 space-y-4">
-                {{-- Divisi --}}
                 <div>
                     <label class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Divisi</label>
                     <div class="flex items-center gap-3 p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
@@ -340,7 +403,6 @@
                     </div>
                 </div>
 
-                {{-- Nama Posisi --}}
                 <div>
                     <label class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Nama Posisi</label>
                     <div class="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
@@ -348,7 +410,6 @@
                     </div>
                 </div>
 
-                {{-- Deskripsi --}}
                 <div>
                     <label class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Deskripsi</label>
                     <div class="p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] min-h-[80px]">
@@ -356,7 +417,6 @@
                     </div>
                 </div>
 
-                {{-- Tanggal Dibuat --}}
                 <div>
                     <label class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Tanggal Dibuat</label>
                     <div class="flex items-center gap-2 p-3 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0]">
@@ -369,7 +429,7 @@
             </div>
 
             <div class="flex items-center justify-end gap-2 px-6 py-4 border-t border-[#E2E8F0] bg-[#F8FAFC]">
-                <button type="button" class="btn-close-modal px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-xl transition">
+                <button type="button" class="btn-close-modal w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-xl transition">
                     Tutup
                 </button>
             </div>
@@ -398,7 +458,6 @@
                 @csrf
                 @method('PUT')
 
-                {{-- Divisi --}}
                 <div>
                     <label for="edit-divisi" class="block text-sm font-medium text-[#1E293B] mb-1.5">
                         Divisi <span class="text-red-500">*</span>
@@ -419,7 +478,6 @@
                     </p>
                 </div>
 
-                {{-- Nama Posisi --}}
                 <div>
                     <label for="edit-nama" class="block text-sm font-medium text-[#1E293B] mb-1.5">
                         Nama Posisi <span class="text-red-500">*</span>
@@ -436,7 +494,6 @@
                     </p>
                 </div>
 
-                {{-- Deskripsi --}}
                 <div>
                     <label for="edit-deskripsi" class="block text-sm font-medium text-[#1E293B] mb-1.5">Deskripsi</label>
                     <textarea id="edit-deskripsi"
@@ -445,11 +502,11 @@
                               class="w-full px-4 py-2.5 bg-white border border-[#E2E8F0] rounded-xl text-sm text-[#1E293B] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 focus:border-[#2563EB] transition resize-none"></textarea>
                 </div>
 
-                <div class="flex items-center justify-end gap-2 pt-4 border-t border-[#E2E8F0]">
-                    <button type="button" class="btn-close-modal px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">
+                <div class="flex flex-col sm:flex-row items-center justify-end gap-2 pt-4 border-t border-[#E2E8F0]">
+                    <button type="button" class="btn-close-modal w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition mb-2 sm:mb-0">
                         Batal
                     </button>
-                    <button type="submit" class="px-4 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl shadow-sm shadow-blue-600/20 transition">
+                    <button type="submit" class="w-full sm:w-auto px-4 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-medium rounded-xl shadow-sm shadow-blue-600/20 transition">
                         Update
                     </button>
                 </div>
@@ -486,15 +543,15 @@
                         </svg>
                     </div>
                     <p class="text-sm text-slate-600 leading-relaxed">
-                        Apakah Anda yakin ingin menghapus posisi ini? Data yang dihapus tidak dapat dikembalikan.
+                        Apakah Anda yakin ingin menghapus posisi <strong id="delete-nama" class="text-[#1E293B]"></strong>? Data yang dihapus tidak dapat dikembalikan.
                     </p>
                 </div>
 
-                <div class="flex items-center justify-end gap-2 pt-4 border-t border-[#E2E8F0]">
-                    <button type="button" class="btn-close-modal px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">
+                <div class="flex flex-col sm:flex-row items-center justify-end gap-2 pt-4 border-t border-[#E2E8F0]">
+                    <button type="button" class="btn-close-modal w-full sm:w-auto px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition mb-2 sm:mb-0">
                         Batal
                     </button>
-                    <button type="submit" class="px-4 py-2.5 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-xl shadow-sm shadow-red-600/20 transition">
+                    <button type="submit" class="w-full sm:w-auto px-4 py-2.5 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-xl shadow-sm shadow-red-600/20 transition">
                         Hapus
                     </button>
                 </div>
@@ -549,6 +606,9 @@
     const showNama = document.getElementById('show-nama');
     const showDeskripsi = document.getElementById('show-deskripsi');
     const showCreated = document.getElementById('show-created');
+
+    // Delete element
+    const deleteNama = document.getElementById('delete-nama');
 
     // ============================================================
     // MODAL FUNCTIONS
@@ -659,7 +719,9 @@
     document.querySelectorAll('.btn-delete').forEach(function(btn) {
         btn.addEventListener('click', function() {
             const action = this.dataset.action || '';
+            const nama = this.dataset.nama || '';
             if (formDelete) formDelete.action = action;
+            if (deleteNama) deleteNama.textContent = nama;
             openModal(modalDelete);
         });
     });
