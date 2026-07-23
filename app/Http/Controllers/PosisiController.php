@@ -54,4 +54,11 @@ class PosisiController extends Controller
             ->route('posisi.index')
             ->with('success', 'Posisi berhasil dihapus.');
     }
+
+    public function byDivisi($divisi)
+{
+    return Posisi::where('divisi_id', $divisi)
+        ->orderBy('nama_posisi')
+        ->get(['id', 'nama_posisi']);
+}
 }

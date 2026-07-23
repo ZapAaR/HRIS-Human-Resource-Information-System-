@@ -8,6 +8,20 @@ use Illuminate\Http\Request;
 
 class PosisiService
 {
+    protected $karyawanService;
+
+    public function __construct(KaryawanService $karyawanService)
+    {
+        $this->karyawanService = $karyawanService;
+    }
+
+    public function byDivisi($divisi)
+    {
+        return response()->json(
+            $this->karyawanService->getPosisiByDivisi($divisi)
+        );
+    }
+    
     public function getAll(Request $request)
     {
         $query = Posisi::with('divisi');

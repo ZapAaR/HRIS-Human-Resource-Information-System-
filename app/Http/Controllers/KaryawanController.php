@@ -36,7 +36,7 @@ class KaryawanController extends Controller
         return view('karyawan.create', [
             'users'    => $this->service->getUsers(),
             'divisis'  => $this->service->getDivisis(),
-            'posisis'  => $this->service->getPosisis(),
+            'posisis'  => collect(),
         ]);
     }
 
@@ -62,7 +62,7 @@ class KaryawanController extends Controller
             'karyawan' => $karyawan,
             'users'    => $this->service->getUsers(),
             'divisis'  => $this->service->getDivisis(),
-            'posisis'  => $this->service->getPosisis(),
+            'posisis'  => $this->service->getPosisiByDivisi($karyawan->divisi_id),
         ]);
     }
 

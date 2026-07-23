@@ -64,6 +64,13 @@ class KaryawanService
         return Divisi::orderBy('nama_divisi')->get();
     }
 
+    public function getPosisiByDivisi($divisiId)
+    {
+        return Posisi::where('divisi_id', $divisiId)
+            ->orderBy('nama_posisi')
+            ->get(['id', 'nama_posisi']);
+    }
+
     public function getPosisis()
     {
         return Posisi::with('divisi')->orderBy('nama_posisi')->get();

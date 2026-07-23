@@ -29,8 +29,9 @@ Route::middleware(['auth', 'role:admin|hr'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin|hr|manager'])->group(function () {
-    Route::resource('karyawan', KaryawanController::class);
+    Route::get('divisi/{divisi}/posisi', [PosisiController::class, 'byDivisi'])->name('divisi.posisi');
 
+    Route::resource('karyawan', KaryawanController::class);
 });
 
 Route::middleware(['auth', 'role:admin|hr|manager|karyawan'])->group(function () {
