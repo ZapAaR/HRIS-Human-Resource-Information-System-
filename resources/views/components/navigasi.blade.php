@@ -96,18 +96,18 @@
         </li>
     @endcanany
 
-    {{-- Attendance --}}
+    {{-- Kehadiran --}}
     @can('kehadiran.view')
     <li class="relative group">
-        <a href="#"
+        <a href="{{ route('kehadiran.index') }}"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 {{ request()->routeIs('attendance.*') ? 'bg-[#2563EB] text-white shadow-lg shadow-blue-600/30' : 'text-[#CBD5E1] hover:bg-white/5 hover:text-white' }}">
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span class="sidebar-label whitespace-nowrap transition-all duration-300">Attendance</span>
+            <span class="sidebar-label whitespace-nowrap transition-all duration-300">Kehadiran</span>
         </a>
-        <div class="sidebar-tooltip">Attendance</div>
+        <div class="sidebar-tooltip">Kehadiran</div>
     </li>
     @endcan
 

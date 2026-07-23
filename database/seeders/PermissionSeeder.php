@@ -13,7 +13,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissions = [
+                $permissions = [
 
             // Dashboard
             'dashboard.view',
@@ -47,6 +47,8 @@ class PermissionSeeder extends Seeder
             'kehadiran.create',
             'kehadiran.edit',
             'kehadiran.delete',
+            'kehadiran.checkin',
+            'kehadiran.checkout',
 
             // Cuti
             'cuti.view',

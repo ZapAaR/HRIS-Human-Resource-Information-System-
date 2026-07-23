@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RolePermissionSeeder::class,
             UserSeeder::class,
+            DivisiSeeder::class,
             PosisiSeeder::class,
             KaryawanSeeder::class,
         ]);

@@ -18,6 +18,10 @@ class Kehadiran extends Model
         'keterangan',
     ];
 
+    protected $casts = [
+        'tanggal_kehadiran' => 'date',
+    ];
+
     public function karyawan()
     {
         return $this->belongsTo(Karyawan::class, 'karyawan_id');

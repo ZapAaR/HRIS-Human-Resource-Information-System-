@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Role::findByName('admin');
+         $admin = Role::findByName('admin');
         $hr = Role::findByName('hr');
         $manager = Role::findByName('manager');
         $karyawan = Role::findByName('karyawan');
@@ -52,7 +52,6 @@ class RolePermissionSeeder extends Seeder
             'dashboard.view',
 
             'kehadiran.view',
-            'kehadiran.create',
 
             'cuti.view',
             'cuti.request',
@@ -60,8 +59,5 @@ class RolePermissionSeeder extends Seeder
             'lembur.view',
             'lembur.request',
         ]);
-
-        
-
     }
 }
