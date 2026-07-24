@@ -110,7 +110,7 @@
                             <div class="flex items-center gap-3 flex-1 min-w-0">
                                 <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-semibold text-sm shrink-0 overflow-hidden">
                                     @if ($karyawan->foto)
-                                        <img src="{{ asset('storage/' . $karyawan->foto) }}" alt="{{ $karyawan->nama_karyawan }}" class="w-full h-full object-cover">
+                                        <img src="{{ asset('storage/karyawan/' . $karyawan->foto) }}" alt="{{ $karyawan->nama_karyawan }}" class="w-full h-full object-cover">
                                     @else
                                         {{ substr($karyawan->nama_karyawan, 0, 1) }}
                                     @endif
@@ -201,7 +201,7 @@
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-semibold text-sm shrink-0 overflow-hidden">
                                             @if ($karyawan->foto)
-                                                <img src="{{ asset('storage/' . $karyawan->foto) }}" alt="{{ $karyawan->nama_karyawan }}" class="w-full h-full object-cover">
+                                                <img src="{{ asset('storage/karyawan/' . $karyawan->foto) }}" alt="{{ $karyawan->nama_karyawan }}" class="w-full h-full object-cover">
                                             @else
                                                 {{ substr($karyawan->nama_karyawan, 0, 1) }}
                                             @endif

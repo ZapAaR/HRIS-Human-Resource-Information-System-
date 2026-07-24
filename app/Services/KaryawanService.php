@@ -8,9 +8,17 @@ use App\Models\Posisi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 
 class KaryawanService
 {
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
     public function getAll(Request $request)
     {
         $query = Karyawan::with([
@@ -78,8 +86,11 @@ class KaryawanService
 
     public function store(array $data): void
     {
-        if (request()->hasFile('foto')) {
-            $data['foto'] = request()->file('foto')->store('karyawan', 'public');
+        if (isset($data['foto'])) {
+            $data['foto'] = $this->imageService->upload(
+                $data['foto'],
+                'karyawan'
+            );
         }
 
         Karyawan::create($data);
@@ -87,23 +98,21 @@ class KaryawanService
 
     public function update(Karyawan $karyawan, array $data): void
     {
-        if (request()->hasFile('foto')) {
-
-            if ($karyawan->foto) {
-                Storage::disk('public')->delete($karyawan->foto);
-            }
-
-            $data['foto'] = request()->file('foto')->store('karyawan', 'public');
-        }
+        $data['foto'] = $this->imageService->update(
+            $data['foto'] ?? null,
+            $karyawan->foto,
+            'karyawan'
+        );
 
         $karyawan->update($data);
     }
 
     public function delete(Karyawan $karyawan): void
     {
-        if ($karyawan->foto) {
-            Storage::disk('public')->delete($karyawan->foto);
-        }
+        $this->imageService->delete(
+            $karyawan->foto,
+            'karyawan'
+        );
 
         $karyawan->delete();
     }

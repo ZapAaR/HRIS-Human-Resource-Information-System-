@@ -52,7 +52,7 @@
                     <div class="w-28 h-28 rounded-2xl bg-white p-1 shadow-xl border-4 border-white">
 
                         @if ($karyawan->foto)
-                            <img src="{{ asset('storage/' . $karyawan->foto) }}" alt="{{ $karyawan->nama_karyawan }}"
+                            <img src="{{ asset('storage/karyawan/' . $karyawan->foto) }}" alt="{{ $karyawan->nama_karyawan }}"
                                 class="w-full h-full rounded-xl object-cover">
                         @else
                             <div
