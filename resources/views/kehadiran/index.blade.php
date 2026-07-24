@@ -190,7 +190,7 @@
                                         <div
                                             class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-semibold text-xs shrink-0 overflow-hidden">
                                             @if ($item->karyawan?->foto)
-                                                <img src="{{ asset('storage/' . $item->karyawan->foto) }}"
+                                                <img src="{{ asset('storage/karyawan/' . $item->karyawan->foto) }}"
                                                     class="w-full h-full object-cover">
                                             @else
                                                 {{ strtoupper(substr($item->karyawan->nama_karyawan ?? '?', 0, 1)) }}
@@ -373,7 +373,7 @@
                                 <div
                                     class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-semibold text-sm shrink-0 overflow-hidden">
                                     @if ($item->karyawan?->foto)
-                                        <img src="{{ asset('storage/' . $item->karyawan->foto) }}"
+                                        <img src="{{ asset('storage/karyawan/' . $item->karyawan->foto) }}"
                                             class="w-full h-full object-cover">
                                     @else
                                         {{ strtoupper(substr($item->karyawan->nama_karyawan ?? '?', 0, 1)) }}

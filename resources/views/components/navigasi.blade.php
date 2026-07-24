@@ -29,17 +29,17 @@
                     </svg>
                     <span class="sidebar-label whitespace-nowrap transition-all duration-300">Administration</span>
                 </div>
-                <svg class="accordion-chevron sidebar-label w-4 h-4 transition-transform duration-300 {{ request()->routeIs(['users.*', 'roles.*', 'permissions.*']) ? 'rotate-90' : '' }}"
+                <svg class="accordion-chevron sidebar-label w-4 h-4 transition-transform duration-300 {{ request()->routeIs(['user.*']) ? 'rotate-90' : '' }}"
                     fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
             </button>
             <ul
-                class="accordion-content mt-1 space-y-1 pl-10 overflow-hidden transition-all duration-300 {{ request()->routeIs(['users.*', 'roles.*', 'permissions.*']) ? 'max-h-96' : 'max-h-0' }}">
+                class="accordion-content mt-1 space-y-1 pl-10 overflow-hidden transition-all duration-300 {{ request()->routeIs(['user.*']) ? 'max-h-96' : 'max-h-0' }}">
 
                 @can('user.view')
                     <li><a href="{{ route('user.index') }}"
-                            class="block px-3 py-2 text-sm rounded-lg transition {{ request()->routeIs('users.*') ? 'text-[#2563EB] font-medium bg-[#2563EB]/10' : 'text-[#CBD5E1]/70 hover:text-white hover:bg-white/5' }}"><span
+                            class="block px-3 py-2 text-sm rounded-lg transition {{ request()->routeIs('user.*') ? 'text-[#2563EB] font-medium bg-[#2563EB]/10' : 'text-[#CBD5E1]/70 hover:text-white hover:bg-white/5' }}"><span
                                 class="sidebar-label">Users</span></a></li>
                     {{-- <li><a href="#"
                     class="block px-3 py-2 text-sm rounded-lg transition {{ request()->routeIs('roles.*') ? 'text-[#2563EB] font-medium bg-[#2563EB]/10' : 'text-[#CBD5E1]/70 hover:text-white hover:bg-white/5' }}"><span
@@ -100,7 +100,7 @@
     @can('kehadiran.view')
     <li class="relative group">
         <a href="{{ route('kehadiran.index') }}"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 {{ request()->routeIs('attendance.*') ? 'bg-[#2563EB] text-white shadow-lg shadow-blue-600/30' : 'text-[#CBD5E1] hover:bg-white/5 hover:text-white' }}">
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 {{ request()->routeIs('kehadiran.*') ? 'bg-[#2563EB] text-white shadow-lg shadow-blue-600/30' : 'text-[#CBD5E1] hover:bg-white/5 hover:text-white' }}">
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
